@@ -15,7 +15,7 @@ const RootRoute = () => (
         p: 3,
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Toolbar />
         <Outlet />
       </Container>
