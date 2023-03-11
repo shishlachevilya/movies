@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,10 +13,13 @@ const propTypes = {
     releaseDate: PropTypes.string.isRequired,
     posterPath: PropTypes.string,
   }).isRequired,
+  onAddNewMovie: PropTypes.func.isRequired,
+  onRemoveNewMovie: PropTypes.func.isRequired,
 };
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onAddNewMovie, onRemoveNewMovie }) => {
   const { title, releaseDate, posterPath } = movie;
+
   return (
     <Card>
       <CardMedia sx={{ height: 280 }} image={posterPath} title={title} />
@@ -38,8 +41,12 @@ const MovieCard = ({ movie }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add</Button>
-        <Button size="small">Remove</Button>
+        <Button size="small" onClick={() => onAddNewMovie(movie)}>
+          Add
+        </Button>
+        <Button size="small" onClick={() => onRemoveNewMovie(movie)}>
+          Remove
+        </Button>
       </CardActions>
     </Card>
   );

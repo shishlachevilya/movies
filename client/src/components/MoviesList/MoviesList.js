@@ -1,34 +1,52 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Grid, Pagination } from '@mui/material';
 
 import { MovieCard } from '../MovieCard';
-import { POPULAR_MOVIES_QUERY } from '../../queries';
 
-const MoviesList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+const propsTypes = {
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired,
+      posterPath: PropTypes.string,
+    })
+  ),
+  onPaginationClick: PropTypes.func,
+  onAddNewMovie: PropTypes.func.isRequired,
+  onRemoveNewMovie: PropTypes.func.isRequired,
+};
 
-  const { loading, error, data } = useQuery(POPULAR_MOVIES_QUERY, {
-    variables: { page: currentPage },
-  });
+const defaultProps = {
+  movies: [],
+  onPaginationClick: () => {},
+};
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-
-  const paginationClickHandler = (event, page) => {
-    setCurrentPage(page);
-  };
-
+const MoviesList = ({
+  movies,
+  currentPage,
+  totalPages,
+  onPaginationClick,
+  onAddNewMovie,
+  onRemoveNewMovie,
+}) => {
   const renderMovieCard = (movie) => (
     <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}>
-      <MovieCard movie={movie} />
+      <MovieCard
+        movie={movie}
+        onAddNewMovie={onAddNewMovie}
+        onRemoveNewMovie={onRemoveNewMovie}
+      />
     </Grid>
   );
 
   return (
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <Grid container spacing={2}>
-        {data?.popularMovies?.results.map(renderMovieCard)}
+        {movies.map(renderMovieCard)}
       </Grid>
 
       <Box sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
@@ -36,12 +54,15 @@ const MoviesList = () => {
           variant="outlined"
           shape="rounded"
           page={currentPage}
-          count={data?.popularMovies?.totalPages}
-          onChange={paginationClickHandler}
+          count={totalPages}
+          onChange={onPaginationClick}
         />
       </Box>
     </Box>
   );
 };
+
+MoviesList.propTypes = propsTypes;
+MoviesList.defaultProps = defaultProps;
 
 export default MoviesList;
