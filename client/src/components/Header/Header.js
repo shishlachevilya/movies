@@ -34,6 +34,7 @@ const Header = () => {
       <Box>
         {navItems.map((item) => (
           <Link
+            key={item}
             component={RouterLink}
             to={item}
             sx={{
