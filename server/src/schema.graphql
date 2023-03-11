@@ -1,5 +1,5 @@
 type Query {
-    movies: Movies!
+    popularMovies(page: Int): Movies!
 }
 type Movies {
     page: Int!
