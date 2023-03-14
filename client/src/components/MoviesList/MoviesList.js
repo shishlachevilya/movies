@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Grid, Pagination } from '@mui/material';
 
 import { MovieCard } from '../MovieCard';
+import { MAX_PAGE_COUNT } from '../../constants/pagination';
 
 const propsTypes = {
   currentPage: PropTypes.number.isRequired,
@@ -33,6 +34,8 @@ const MoviesList = ({
   onAddNewMovie,
   onRemoveNewMovie,
 }) => {
+  const count = totalPages <= MAX_PAGE_COUNT ? totalPages : MAX_PAGE_COUNT;
+
   const renderMovieCard = (movie) => (
     <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}>
       <MovieCard
@@ -54,7 +57,7 @@ const MoviesList = ({
           variant="outlined"
           shape="rounded"
           page={currentPage}
-          count={totalPages}
+          count={count}
           onChange={onPaginationClick}
         />
       </Box>

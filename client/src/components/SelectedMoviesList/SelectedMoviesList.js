@@ -10,6 +10,8 @@ import {
   CardActions,
   styled,
 } from '@mui/material';
+import SelectedMoviesForm from '../SelectedMoviesForm/SelectedMoviesForm';
+import noMoviesImageSrc from '../../assets/no_movies.png';
 
 const propTypes = {
   movies: PropTypes.arrayOf(
@@ -33,7 +35,35 @@ const MovieCard = styled(Card)(({ theme }) => ({
   },
 }));
 
+const NoMovies = styled(Box)(() => ({
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  padding: '50px 0',
+}));
+
 const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
+  if (!movies.length) {
+    return (
+      <NoMovies>
+        <Box
+          component="img"
+          sx={{
+            width: '50%',
+            opacity: '.6',
+          }}
+          alt="No images."
+          src={noMoviesImageSrc}
+        />
+        <Typography variant="h5" mt={2}>
+          No selected movies
+        </Typography>
+      </NoMovies>
+    );
+  }
+
   const renderSelectedMovieCard = (movie) => {
     const { id, title, releaseDate, posterPath } = movie;
     return (
@@ -76,8 +106,9 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
   };
 
   return (
-    <Box sx={{ padding: '16px', width: '100%' }}>
-      {movies?.length ? movies.map(renderSelectedMovieCard) : 'add new movie'}
+    <Box sx={{ padding: '16px' }}>
+      {movies.map(renderSelectedMovieCard)}
+      <SelectedMoviesForm />
     </Box>
   );
 };
