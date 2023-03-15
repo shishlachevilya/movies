@@ -64,6 +64,13 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
     );
   }
 
+  const onSubmit = ({ listName }) => {
+    const ids = movies.map(({ id }) => id).join();
+    const url = `${window.location.host}/recommend?title=${listName}&ids=${ids}`;
+
+    console.log(url);
+  };
+
   const renderSelectedMovieCard = (movie) => {
     const { id, title, releaseDate, posterPath } = movie;
     return (
@@ -108,7 +115,7 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
   return (
     <Box sx={{ padding: '16px' }}>
       {movies.map(renderSelectedMovieCard)}
-      <SelectedMoviesForm />
+      <SelectedMoviesForm onSubmit={onSubmit} />
     </Box>
   );
 };
