@@ -12,7 +12,7 @@ const propsTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string,
       posterPath: PropTypes.string,
     })
   ),

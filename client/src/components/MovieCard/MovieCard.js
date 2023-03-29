@@ -10,7 +10,7 @@ const propTypes = {
   movie: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string,
     posterPath: PropTypes.string,
   }).isRequired,
   onAddNewMovie: PropTypes.func.isRequired,
@@ -37,7 +37,7 @@ const MovieCard = ({ movie, onAddNewMovie, onRemoveNewMovie }) => {
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {releaseDate}
+          {releaseDate || 'NAN'}
         </Typography>
       </CardContent>
       <CardActions>

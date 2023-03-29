@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { RootRoute } from './routes';
-import { HomePage, ErrorPage, AboutPage, ContactPage } from './pages';
+import { HomePage, ErrorPage, AboutPage, RecommendedPage } from './pages';
 import { ROUTES_PATH } from './constants/routes';
 
 const router = createBrowserRouter([
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: ROUTES_PATH.contact,
-        element: <ContactPage />,
+        path: ROUTES_PATH.recommended,
+        element: <RecommendedPage />,
       },
     ],
   },

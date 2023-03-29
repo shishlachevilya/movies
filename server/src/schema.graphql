@@ -11,7 +11,7 @@ type Movies {
 type Movie {
     id: ID!
     title: String!
-    releaseDate: String!
+    releaseDate: String
     genreIds: [Int]!
     posterPath: String
 }

@@ -4,7 +4,7 @@ import { Field, Form } from 'react-final-form';
 import { InputBase, Paper } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import CheckIcon from '@mui/icons-material/Check';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 const propTypes = {
   onSubmit: PropTypes.func.isRequired,
@@ -45,7 +45,7 @@ const SelectedMoviesForm = ({ onSubmit }) => (
             sx={{ p: '10px' }}
             aria-label="directions"
           >
-            <CheckIcon />
+            <ArrowOutwardIcon />
           </IconButton>
         </Paper>
       </form>
