@@ -1,5 +1,6 @@
 type Query {
     popularMovies(page: Int): Movies!
+    moviesByIds(ids: [Int]): [Movie]!
 }
 type Movies {
     page: Int!
@@ -14,4 +15,6 @@ type Movie {
     releaseDate: String
     genreIds: [Int]!
     posterPath: String
+    status: String
+    overview: String
 }

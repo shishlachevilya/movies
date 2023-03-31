@@ -13,6 +13,7 @@ import {
 import SelectedMoviesForm from '../SelectedMoviesForm/SelectedMoviesForm';
 import { ConfirmModal } from '../ConfirmModal';
 import noMoviesImageSrc from '../../assets/no_movies.png';
+import { NAN_MESSAGE } from '../../constants';
 
 const propTypes = {
   movies: PropTypes.arrayOf(
@@ -70,7 +71,7 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
 
   const onSubmit = ({ listName }) => {
     const ids = movies.map(({ id }) => id).join();
-    const url = `/recommended?title=${listName}&ids=${ids}`;
+    const url = `${window.location.host}/recommended?title=${listName}&ids=${ids}`;
 
     setSelectedListName(listName);
     setLink(url);
@@ -105,10 +106,10 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
                 textOverflow: 'ellipsis',
               }}
             >
-              {title}
+              {title || NAN_MESSAGE}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {releaseDate}
+              {releaseDate || NAN_MESSAGE}
             </Typography>
           </CardContent>
           <CardActions>

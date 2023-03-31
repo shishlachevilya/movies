@@ -12,13 +12,26 @@ const propTypes = {
     title: PropTypes.string.isRequired,
     releaseDate: PropTypes.string,
     posterPath: PropTypes.string,
+    overview: PropTypes.string,
   }).isRequired,
-  onAddNewMovie: PropTypes.func.isRequired,
-  onRemoveNewMovie: PropTypes.func.isRequired,
+  onAddNewMovie: PropTypes.func,
+  onRemoveNewMovie: PropTypes.func,
+  isPreviewMode: PropTypes.bool,
 };
 
-const MovieCard = ({ movie, onAddNewMovie, onRemoveNewMovie }) => {
-  const { title, releaseDate, posterPath } = movie;
+const defaultProps = {
+  onAddNewMovie: () => {},
+  onRemoveNewMovie: () => {},
+  isPreviewMode: false,
+};
+
+const MovieCard = ({
+  movie,
+  onAddNewMovie,
+  onRemoveNewMovie,
+  isPreviewMode,
+}) => {
+  const { title, releaseDate, posterPath, overview } = movie;
 
   return (
     <Card>
@@ -36,22 +49,33 @@ const MovieCard = ({ movie, onAddNewMovie, onRemoveNewMovie }) => {
         >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {releaseDate || 'NAN'}
-        </Typography>
+        {releaseDate && (
+          <Typography gutterBottom variant="body2" color="text.secondary">
+            {releaseDate}
+          </Typography>
+        )}
+        {overview && (
+          <Typography gutterBottom variant="body2" color="text.secondary">
+            {overview}
+          </Typography>
+        )}
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => onAddNewMovie(movie)}>
-          Add
-        </Button>
-        <Button size="small" onClick={() => onRemoveNewMovie(movie)}>
-          Remove
-        </Button>
-      </CardActions>
+
+      {!isPreviewMode && (
+        <CardActions>
+          <Button size="small" onClick={() => onAddNewMovie(movie)}>
+            Add
+          </Button>
+          <Button size="small" onClick={() => onRemoveNewMovie(movie)}>
+            Remove
+          </Button>
+        </CardActions>
+      )}
     </Card>
   );
 };
 
 MovieCard.propTypes = propTypes;
+MovieCard.defaultProps = defaultProps;
 
 export default MovieCard;

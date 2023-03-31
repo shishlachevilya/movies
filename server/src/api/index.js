@@ -17,6 +17,12 @@ const api = {
 
     return await response.data;
   },
+
+  getMoviesById: async function (id) {
+    return axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+    );
+  },
 };
 
 module.exports = {

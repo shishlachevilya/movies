@@ -15,3 +15,16 @@ export const POPULAR_MOVIES_QUERY = gql`
     }
   }
 `;
+
+export const MOVIES_BY_IDS = gql`
+  query moviesByIds($ids: [Int]) {
+    moviesByIds(ids: $ids) {
+      id
+      status
+      title
+      posterPath
+      releaseDate
+      overview
+    }
+  }
+`;
