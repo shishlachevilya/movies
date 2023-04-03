@@ -1,0 +1,8 @@
+{
+    "movie.common.title.recommended.page": "Selected movies - {{title}}",
+    "movie.common.title.no_movies": "No selected movies",
+    "movie.common.empty": "Translation not available",
+    "movie.common.button.add": "Add",
+    "movie.common.button.remove": "Remove",
+    "movie.input.placeholder": "Put the list name"
+}

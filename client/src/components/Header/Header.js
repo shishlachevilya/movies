@@ -12,6 +12,7 @@ import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { ROUTES_PATH } from '../../constants/routes';
+import { LanguageSelect } from '../LanguageSelect';
 
 const drawerWidth = 240;
 const navItems = [ROUTES_PATH.about, ROUTES_PATH.contact];
@@ -27,14 +28,14 @@ const Header = () => {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Link component={RouterLink} to={ROUTES_PATH.root} underline="none">
         <Typography variant="h6" sx={{ my: 2 }}>
-          MUI
+          Movies
         </Typography>
       </Link>
       <Divider />
       <Box>
         {navItems.map((item) => (
           <Link
-            key={item}
+            key={`drawer-${item}`}
             component={RouterLink}
             to={item}
             sx={{
@@ -82,10 +83,9 @@ const Header = () => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             >
-              MUI
+              Movies
             </Typography>
           </Link>
-
           <Box
             sx={{
               display: { xs: 'none', sm: 'flex' },
@@ -97,7 +97,7 @@ const Header = () => {
               <Link
                 component={RouterLink}
                 to={item}
-                key={item}
+                key={`appBar-${item}`}
                 sx={{ color: '#fff', ml: '20px', textTransform: 'uppercase' }}
                 underline="none"
               >
@@ -107,6 +107,7 @@ const Header = () => {
               </Link>
             ))}
           </Box>
+          <LanguageSelect />
         </Toolbar>
       </AppBar>
       <Box component="nav">

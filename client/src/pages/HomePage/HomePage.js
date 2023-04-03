@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Grid, Paper } from '@mui/material';
 import { MoviesList } from '../../components/MoviesList';
@@ -6,13 +6,16 @@ import { SelectedMoviesList } from '../../components/SelectedMoviesList';
 
 import { POPULAR_MOVIES_QUERY } from '../../queries';
 import { useSelectedMovies } from '../../hooks/useSelectedMovies';
+import { LanguageContext } from '../../context/languageContext';
 
 const elevation = 6;
 
 const HomePage = () => {
+  const { language } = useContext(LanguageContext);
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, error, data } = useQuery(POPULAR_MOVIES_QUERY, {
-    variables: { page: currentPage },
+    variables: { page: currentPage, lang: language },
+    fetchPolicy: 'no-cache',
   });
   const { selectedMovies, add, remove } = useSelectedMovies();
 

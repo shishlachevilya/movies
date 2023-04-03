@@ -10,17 +10,17 @@ const api = {
     return await response.data;
   },
 
-  getPopularMovies: async function (page) {
+  getPopularMovies: async function (page, lang) {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=${lang}&page=${page}`
     );
 
     return await response.data;
   },
 
-  getMoviesById: async function (id) {
+  getMoviesById: async function (id, lang) {
     return axios.get(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=${lang}`
     );
   },
 };

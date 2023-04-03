@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Card,
@@ -47,6 +48,7 @@ const NoMovies = styled(Box)(() => ({
 }));
 
 const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
+  const { t } = useTranslation();
   const [selectedListName, setSelectedListName] = useState('');
   const [link, setLink] = useState('');
 
@@ -63,7 +65,7 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
           src={noMoviesImageSrc}
         />
         <Typography variant="h5" mt={2}>
-          No selected movies
+          {t('movie.common.title.no_movies')}
         </Typography>
       </NoMovies>
     );
@@ -114,7 +116,7 @@ const SelectedMoviesList = ({ movies, onRemoveNewMovie }) => {
           </CardContent>
           <CardActions>
             <Button size="small" onClick={() => onRemoveNewMovie(movie)}>
-              Remove
+              {t('movie.common.button.remove')}
             </Button>
           </CardActions>
         </Box>

@@ -1,10 +1,14 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { Button, CardActions } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import {
+  Button,
+  CardActions,
+  Typography,
+  CardMedia,
+  CardContent,
+  Card,
+} from '@mui/material';
 
 const propTypes = {
   movie: PropTypes.shape({
@@ -32,9 +36,10 @@ const MovieCard = ({
   isPreviewMode,
 }) => {
   const { title, releaseDate, posterPath, overview } = movie;
+  const { t } = useTranslation();
 
   return (
-    <Card>
+    <Card sx={{ height: '100%' }}>
       <CardMedia sx={{ height: 280 }} image={posterPath} title={title} />
       <CardContent>
         <Typography
@@ -56,7 +61,7 @@ const MovieCard = ({
         )}
         {overview && (
           <Typography gutterBottom variant="body2" color="text.secondary">
-            {overview}
+            {overview || t('movie.common.empty')}
           </Typography>
         )}
       </CardContent>
@@ -64,10 +69,10 @@ const MovieCard = ({
       {!isPreviewMode && (
         <CardActions>
           <Button size="small" onClick={() => onAddNewMovie(movie)}>
-            Add
+            {t('movie.common.button.add')}
           </Button>
           <Button size="small" onClick={() => onRemoveNewMovie(movie)}>
-            Remove
+            {t('movie.common.button.remove')}
           </Button>
         </CardActions>
       )}

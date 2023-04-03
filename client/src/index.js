@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import router from './router';
 import { SERVER_URL } from './constants/settings';
 
 import './index.scss';
+import './i18n';
 
 const client = new ApolloClient({
   uri: SERVER_URL,
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <ThemeProvider theme={darkTheme}>
-        <RouterProvider router={router} />
+        <Suspense fallback="loading">
+          <RouterProvider router={router} />
+        </Suspense>
       </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>

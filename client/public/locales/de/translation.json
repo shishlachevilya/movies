@@ -1,0 +1,8 @@
+{
+    "movie.common.title.recommended.page": "Ausgewählte Filme - {{title}}",
+    "movie.common.title.no_movies": "Keine ausgewählten Filme",
+    "movie.common.empty": "Übersetzung nicht verfügbar",
+    "movie.common.button.add": "Hinzufügen",
+    "movie.common.button.remove": "Löschen",
+    "movie.input.placeholder": "Geben Sie den Listennamen ein"
+}

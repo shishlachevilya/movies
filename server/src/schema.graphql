@@ -1,6 +1,6 @@
 type Query {
-    popularMovies(page: Int): Movies!
-    moviesByIds(ids: [Int]): [Movie]!
+    popularMovies(page: Int, lang: String): Movies!
+    moviesByIds(ids: [Int], lang: String): [Movie]!
 }
 type Movies {
     page: Int!

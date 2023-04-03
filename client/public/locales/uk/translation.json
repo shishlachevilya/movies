@@ -1,0 +1,8 @@
+{
+    "movie.common.title.recommended.page": "Вибрані фільми - {{title}}",
+    "movie.common.title.no_movies": "Немає вибраних фільмів",
+    "movie.common.empty": "Переклад недоступний",
+    "movie.common.button.add": "Додати",
+    "movie.common.button.remove": "Видалити",
+    "movie.input.placeholder": "Введіть назву списку"
+}
